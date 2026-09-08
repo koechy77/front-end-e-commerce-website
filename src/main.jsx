@@ -10,7 +10,7 @@ import { WishlistProvider } from "./context/WishlistContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/front-end-e-commerce-website">
       <SearchProvider>
         <CartProvider>
           <WishlistProvider>
