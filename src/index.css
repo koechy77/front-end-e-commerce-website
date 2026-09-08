@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Scribble&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Supermercado+One&display=swap');
+
+@import 'tailwindcss';
+
+
+@theme {
+  --font-poppins: "Poppins", sans-serif;
+  --font-scribble: "Rubik Scribble", system-ui;
+  --font-supermercado: "Supermercado One", serif;
+}
+
+.success-icon {
+  width: 120px;
+  height: 120px;
+}
+
+.circle {
+  stroke: #f97316;
+  stroke-width: 2;
+  stroke-dasharray: 157;
+  stroke-dashoffset: 157;
+  animation: drawCircle 0.8s ease forwards;
+}
+
+.check {
+  stroke: hsl(24, 95%, 53%);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  animation: drawCheck 0.5s ease forwards;
+  animation-delay: 0.8s;
+}
+
+@keyframes drawCircle {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes drawCheck {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.hero-slide-wrapper {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  text-align: center;
+  color: white;
+  overflow: hidden;
+}
+
+.hero-slide-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.hero-slide-content {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+  padding: 1rem;
+}
+
+.hero-slide-content h1,
+.hero-slide-content p {
+  margin: 0;
+}
+
+.hero-slide.slide-active {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* container slide animations (position + slight shift) */
+.hero-slide.slide-out {
+  animation: heroSlideOut 0.9s ease forwards;
+}
+
+.hero-slide.slide-in {
+  animation: heroSlideIn 0.9s ease forwards;
+}
+
+
+@keyframes heroSlideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes imageFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes imageFadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes contentIn {
+  from { transform: translateX(12px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes contentOut {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(-12px); opacity: 0; }
+}
+
+/* image crossfade (keeps images from going blank) */
+.hero-slide.slide-in .hero-slide-image {
+  animation: imageFadeIn 1.5s ease 0s forwards;
+}
+.hero-slide.slide-out .hero-slide-image {
+  animation: imageFadeOut 1.5s ease 0s forwards;
+}
+
+/* content stagger: slide slightly and fade */
+.hero-slide.slide-in .hero-slide-content {
+  animation: contentIn 1.2s ease 0.12s forwards;
+}
+.hero-slide.slide-out .hero-slide-content {
+  animation: contentOut 0.9s ease 0s forwards;
+}
+
