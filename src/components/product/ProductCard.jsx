@@ -6,6 +6,7 @@ import { FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useWishlist } from "../../context/WishlistContext";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
+import slugify from 'slugify';
 
 export default function ProductCard({ product }) {
     const { addToCart } = useCart();
@@ -61,7 +62,7 @@ export default function ProductCard({ product }) {
                         <FaCartArrowDown className="font-extrabold text-2xl w-full" />
                     </Button>
 
-                    <Link to={`/products/${product.id}`}>
+                    <Link to={`/products/${slugify(product.name, { lower: true })}`}>
                     view details
                     </Link>
                     </div>

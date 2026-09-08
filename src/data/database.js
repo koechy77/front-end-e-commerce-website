@@ -4,13 +4,24 @@ import hero2WEB from "../assets/second-hero/hero2WEB.webp";
 import hero2JPG from '../assets/second-hero/hero2JPG.jpg';
 import hero3WEB from "../assets/third-hero/hero3WEB.webp";
 import hero3JPG from '../assets/third-hero/hero3JPG.jpg';
-import heroPNG from "../assets/hero.png";
-import viteLogo from "../assets/vite.svg";
-import reactLogo from "../assets/react.svg";
 import fastWEB from '../assets/whychoose/fastWEB.webp';
 import secureWEB from '../assets/whychoose/secureWEB.webp';
 import qualityWEB from '../assets/whychoose/qualityWEB.webp';
 import supportWEB from '../assets/whychoose/supportWEB.webp';
+import iphone15 from '../assets/products/iphone15.webp';
+import galaxys25 from '../assets/products/galaxys25.webp';
+import hppavilion from '../assets/products/hppavilion.webp';
+import SonyWH1000XM5 from '../assets/products/SonyWH1000XM5.webp';
+import appleS10 from '../assets/products/appleS10.webp';
+import SamsungGalaxyBudsPro from '../assets/products/SamsungGalaxyBudsPro.webp';
+import GooglePixel9Pro from '../assets/products/GooglePixel9Pro.webp';
+import MacBookPro16 from '../assets/products/MacBookPro16.webp';
+import iPadAir from '../assets/products/iPadAir.webp';
+import CanonEOSR6 from '../assets/products/CanonEOSR6.webp';
+import AdidasUltraboost22 from '../assets/products/AdidasUltraboost22.webp';
+import DellXPS15 from '../assets/products/DellXPS15.webp';
+import JBLFlip6 from '../assets/products/JBLFlip6.webp';
+import FitbitCharge6 from '../assets/products/FitbitCharge6.webp';
 
 export const heroes = [
   {
@@ -124,7 +135,7 @@ const products = [
     id: 1,
     name: "Nike Air Max",
     price: 120.55,
-    category: "Shoes",
+    category: "SHOES",
     image: heroJPG,
     description: "Comfortable running shoes for everyday wear.",
     rating: 4.5,
@@ -135,8 +146,8 @@ const products = [
     id: 2,
     name: "iPhone 15",
     price: 1500.99,
-    category: "Phones",
-    image: heroWEB,
+    category: "PHONES",
+    image: iphone15,
     description: "Apple's latest smartphone.",
     rating: 4.8,
     stock: 8,
@@ -146,8 +157,8 @@ const products = [
     id: 3,
     name: "Samsung Galaxy S25",
     price: 1350.99,
-    category: "Phones",
-    image: hero2WEB,
+    category: "PHONES",
+    image: galaxys25,
     description: "Powerful Android flagship device.",
     rating: 4.7,
     stock: 12,
@@ -157,8 +168,8 @@ const products = [
     id: 4,
     name: "HP Pavilion",
     price: 9800.65,
-    category: "Laptops",
-    image: heroPNG,
+    category: "LAPTOPS",
+    image: hppavilion,
     description: "Reliable laptop for work and study.",
     rating: 4.3,
     stock: 10,
@@ -168,8 +179,8 @@ const products = [
     id: 5,
     name: "Sony WH-1000XM5",
     price: 3200.00,
-    category: "Headphones",
-    image: hero3JPG,
+    category: "HEADPHONES",
+    image: SonyWH1000XM5,
     description: "Premium noise-cancelling headphones.",
     rating: 4.9,
     stock: 20,
@@ -179,8 +190,8 @@ const products = [
     id: 6,
     name: "Apple Watch Series 10",
     price: 450.77,
-    category: "Wearables",
-    image: viteLogo,
+    category: "WEARABLES",
+    image: appleS10,
     description: "Smartwatch with fitness tracking.",
     rating: 4.6,
     stock: 18,
@@ -190,8 +201,8 @@ const products = [
     id: 7,
     name: "Samsung Galaxy Buds Pro",
     price: 249.99,
-    category: "Headphones",
-    image: hero2JPG,
+    category: "HEADPHONES",
+    image: SamsungGalaxyBudsPro,
     description: "True wireless earbuds with active noise cancellation.",
     rating: 4.4,
     stock: 25,
@@ -201,8 +212,8 @@ const products = [
     id: 8,
     name: "Google Pixel 9 Pro",
     price: 1299.99,
-    category: "Phones",
-    image: hero3WEB,
+    category: "PHONES",
+    image: GooglePixel9Pro,
     description: "Google's AI-powered flagship phone.",
     rating: 4.7,
     stock: 9,
@@ -212,8 +223,8 @@ const products = [
     id: 9,
     name: "MacBook Pro 16",
     price: 2499.99,
-    category: "Laptops",
-    image: heroJPG,
+    category: "LAPTOPS",
+    image: MacBookPro16,
     description: "Powerful laptop for professionals.",
     rating: 4.9,
     stock: 5,
@@ -223,8 +234,8 @@ const products = [
     id: 10,
     name: "iPad Air",
     price: 699.99,
-    category: "Tablets",
-    image: hero2JPG,
+    category: "TABLETS",
+    image: iPadAir,
     description: "Versatile tablet for work and entertainment.",
     rating: 4.6,
     stock: 14,
@@ -234,8 +245,8 @@ const products = [
     id: 11,
     name: "Canon EOS R6",
     price: 2499.99,
-    category: "Cameras",
-    image: hero3JPG,
+    category: "CAMERAS",
+    image: CanonEOSR6,
     description: "Professional mirrorless camera.",
     rating: 4.8,
     stock: 4,
@@ -245,8 +256,8 @@ const products = [
     id: 12,
     name: "Adidas Ultraboost 22",
     price: 180.00,
-    category: "Shoes",
-    image: heroWEB,
+    category: "SHOES",
+    image: AdidasUltraboost22,
     description: "Performance running shoes with comfort boost.",
     rating: 4.5,
     stock: 22,
@@ -256,8 +267,8 @@ const products = [
     id: 13,
     name: "Dell XPS 15",
     price: 1799.99,
-    category: "Laptops",
-    image: hero2WEB,
+    category: "LAPTOPS",
+    image: DellXPS15,
     description: "Premium Windows laptop for creators.",
     rating: 4.7,
     stock: 7,
@@ -267,8 +278,8 @@ const products = [
     id: 14,
     name: "JBL Flip 6",
     price: 129.99,
-    category: "Headphones",
-    image: reactLogo,
+    category: "HEADPHONES",
+    image: JBLFlip6,
     description: "Portable Bluetooth speaker.",
     rating: 4.4,
     stock: 30,
@@ -278,8 +289,8 @@ const products = [
     id: 15,
     name: "Fitbit Charge 6",
     price: 199.99,
-    category: "Wearables",
-    image: heroPNG,
+    category: "WEARABLES",
+    image: FitbitCharge6,
     description: "Advanced fitness tracker with heart rate monitoring.",
     rating: 4.5,
     stock: 28,
