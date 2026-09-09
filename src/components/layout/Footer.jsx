@@ -40,7 +40,7 @@ export default function Footer() {
       <div className="mx-auto max-w-6xl grid grid-cols-1 gap-8 md:grid-cols-4">
         <div>
           <Link to="/" className="inline-block">
-            <h2 className="font-supermercado text-4xl text-orange-600"><i>CHmart</i></h2>
+            <h2 className="text-4xl font-extrabold text-orange-600"><i>CHmart</i></h2>
           </Link>
           <p className="mt-3 max-w-xs text-sm leading-6 text-gray-600">
             Quality products, trusted service, and everyday deals that keep shopping simple.

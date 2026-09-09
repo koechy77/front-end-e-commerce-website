@@ -9,15 +9,21 @@ export default function Hero() {
   useEffect(() => {
     let timeout;
 
+    const preload = new Image();
+    preload.src = heroes[1 % heroes.length].image;
+
     const interval = setInterval(() => {
       const next = (currentHeroRef.current + 1) % heroes.length;
       setNextHero(next);
+
+      const upcoming = new Image();
+      upcoming.src = heroes[(next + 1) % heroes.length].image;
 
       timeout = setTimeout(() => {
         setCurrentHero(next);
         currentHeroRef.current = next;
         setNextHero(null);
-      }, 700);
+      }, 500);
     }, 4500);
 
     return () => {
@@ -48,7 +54,7 @@ export default function Hero() {
 
           {incoming && (
             <div className="hero-slide slide-in">
-              <img src={incoming.image} alt={incoming.title} decoding="async" className="hero-slide-image" />
+              <img src={incoming.image} alt={incoming.title} loading="eager" decoding="async" className="hero-slide-image" />
               <div className="hero-overlay"></div>
               <div className="hero-slide-content">
                 <h1 className="text-3xl md:text-5xl font-bold font-scribble">
