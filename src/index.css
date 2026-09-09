@@ -123,6 +123,17 @@
   }
 }
 
+@keyframes heroSlideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-12px);
+    opacity: 0;
+  }
+}
+
 @keyframes imageFadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -153,9 +164,9 @@
 
 /* content stagger: slide slightly and fade */
 .hero-slide.slide-in .hero-slide-content {
-  animation: contentIn 1.2s ease 0.12s forwards;
+  animation: contentIn 0.5s ease 0.05s forwards;
 }
 .hero-slide.slide-out .hero-slide-content {
-  animation: contentOut 0.9s ease 0s forwards;
+  animation: contentOut 0.5s ease 0s forwards;
 }
 
