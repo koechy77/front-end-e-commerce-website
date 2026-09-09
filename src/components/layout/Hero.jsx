@@ -1,72 +1,97 @@
+import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { heroes } from "../../data/database";
-import { useState, useEffect, useRef } from "react";
+
+const DISPLAY_MS = 5000;
+
+function HeroSlide({ hero, visible, priority }) {
+  return (
+    <div
+      className={`hero-slide ${visible ? "hero-slide-visible" : "hero-slide-hidden"}`}
+      aria-hidden={!visible}
+    >
+      <img
+        src={hero.image}
+        alt=""
+        fetchPriority={priority ? "high" : "auto"}
+        loading={priority ? "eager" : "lazy"}
+        decoding="async"
+        className="hero-slide-image"
+      />
+      <div className="hero-overlay" />
+    </div>
+  );
+}
 
 export default function Hero() {
-  const [currentHero, setCurrentHero] = useState(0);
-  const [nextHero, setNextHero] = useState(null);
-  const currentHeroRef = useRef(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [nextIndex, setNextIndex] = useState(null);
+  const transitionTimer = useRef(null);
+
+  function finishTransition(index) {
+    window.clearTimeout(transitionTimer.current);
+    setNextIndex(null);
+    setCurrentIndex(index);
+  }
 
   useEffect(() => {
-    let timeout;
-
-    const preload = new Image();
-    preload.src = heroes[1 % heroes.length].image;
-
-    const interval = setInterval(() => {
-      const next = (currentHeroRef.current + 1) % heroes.length;
-      setNextHero(next);
-
-      const upcoming = new Image();
-      upcoming.src = heroes[(next + 1) % heroes.length].image;
-
-      timeout = setTimeout(() => {
-        setCurrentHero(next);
-        currentHeroRef.current = next;
-        setNextHero(null);
-      }, 450);
-    }, 4500);
+    const interval = window.setInterval(() => {
+      setCurrentIndex((index) => {
+        const next = (index + 1) % heroes.length;
+        setNextIndex(next);
+        window.clearTimeout(transitionTimer.current);
+        transitionTimer.current = window.setTimeout(() => {
+          finishTransition(next);
+        }, 650);
+        return index;
+      });
+    }, DISPLAY_MS);
 
     return () => {
-      clearInterval(interval);
-      clearTimeout(timeout);
+      window.clearInterval(interval);
+      window.clearTimeout(transitionTimer.current);
     };
   }, []);
 
-  const hero = heroes[currentHero];
-  const incoming = nextHero !== null ? heroes[nextHero] : null;
+  const currentHero = heroes[currentIndex];
+  const nextHero = nextIndex === null ? null : heroes[nextIndex];
+
+  function goToSlide(index) {
+    if (index === currentIndex) return;
+    setNextIndex(index);
+    window.clearTimeout(transitionTimer.current);
+    transitionTimer.current = window.setTimeout(() => {
+      finishTransition(index);
+    }, 650);
+  }
 
   return (
-    <section className="h-[60vh] w-full relative overflow-hidden rounded-2xl shadow-xl">
-      <div className="absolute inset-0">
-        <div className="hero-slide-wrapper">
-          <div className={`hero-slide ${incoming ? "slide-out" : "slide-active"}`}>
-            <img src={hero.image} alt={hero.title} fetchPriority="high" decoding="async" className="hero-slide-image" />
-            <div className="hero-overlay"></div>
-            <div className="hero-slide-content">
-              <h1 className="text-3xl md:text-5xl font-bold font-scribble">
-                {hero.title}
-              </h1>
-              <p className="mt-3 text-sm md:text-lg max-w-md font-scribble">
-                {hero.subtitle}
-              </p>
-            </div>
-          </div>
+    <section className={`hero hero-slide-${currentIndex}`} aria-label="Featured offers">
+      <div className="hero-slide-wrapper">
+        <HeroSlide hero={currentHero} visible={nextHero === null} priority />
+        {nextHero && <HeroSlide hero={nextHero} visible priority={false} />}
+      </div>
 
-          {incoming && (
-            <div className="hero-slide slide-in">
-              <img src={incoming.image} alt={incoming.title} loading="eager" decoding="async" className="hero-slide-image" />
-              <div className="hero-overlay"></div>
-              <div className="hero-slide-content">
-                <h1 className="text-3xl md:text-5xl font-bold font-scribble">
-                  {incoming.title}
-                </h1>
-                <p className="mt-3 text-sm md:text-lg max-w-md font-scribble">
-                  {incoming.subtitle}
-                </p>
-              </div>
-            </div>
-          )}
-        </div>
+      <div className="hero-slide-content">
+        <p className="hero-kicker">CHmart / new arrivals</p>
+        <h1>{currentHero.title}</h1>
+        <p className="hero-subtitle">{currentHero.subtitle}</p>
+        <Link className="hero-cta" to="/products">
+          Explore products <span aria-hidden="true">&#8594;</span>
+        </Link>
+      </div>
+
+      <div className="hero-controls" aria-label="Choose featured offer">
+        {heroes.map((hero, index) => (
+          <button
+            key={hero.title}
+            type="button"
+            className={`hero-dot ${index === currentIndex ? "hero-dot-active" : ""}`}
+            aria-label={`Show ${hero.title}`}
+            aria-current={index === currentIndex ? "true" : undefined}
+            onClick={() => goToSlide(index)}
+          />
+        ))}
       </div>
     </section>
   );
