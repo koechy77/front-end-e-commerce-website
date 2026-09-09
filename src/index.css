@@ -62,7 +62,8 @@
   text-align: center;
   color: white;
   overflow: hidden;
-  will-change: transform, opacity;
+  opacity: 1;
+  transition: opacity 0.45s ease;
 }
 
 .hero-slide-image {
@@ -104,55 +105,13 @@
 
 /* container slide animations (position + slight shift) */
 .hero-slide.slide-out {
-  animation: heroSlideOut 0.5s ease forwards;
+  opacity: 0;
 }
 
 .hero-slide.slide-in {
-  animation: heroSlideIn 0.5s ease forwards;
+  opacity: 1;
 }
 
-
-@keyframes heroSlideIn {
-  from {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-@keyframes heroSlideOut {
-  from {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateX(-12px);
-    opacity: 0;
-  }
-}
-
-@keyframes imageFadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes imageFadeOut {
-  from { opacity: 1; }
-  to { opacity: 0; }
-}
-
-@keyframes contentIn {
-  from { transform: translateX(12px); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
-}
-
-@keyframes contentOut {
-  from { transform: translateX(0); opacity: 1; }
-  to { transform: translateX(-12px); opacity: 0; }
-}
 
 /* image crossfade (keeps images from going blank) */
 .hero-slide.slide-in .hero-slide-image {

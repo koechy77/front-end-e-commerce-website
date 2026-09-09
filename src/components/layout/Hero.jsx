@@ -23,7 +23,7 @@ export default function Hero() {
         setCurrentHero(next);
         currentHeroRef.current = next;
         setNextHero(null);
-      }, 500);
+      }, 450);
     }, 4500);
 
     return () => {
